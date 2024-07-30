@@ -4,7 +4,7 @@ from predictor import Predictor
 import pickle
 import datetime
 import json
-#
+
 loaded_model = pickle.load(open("lreg_taxi.pkl", 'rb'))
 
 app = FastAPI()
