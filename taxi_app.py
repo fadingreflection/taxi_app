@@ -3,8 +3,8 @@ import plotly.graph_objects as go
 import requests
 import plotly.io
 
-st.title("Taxi price prediction in NYC :taxi: ")
-st.image("taxi_image.png")
+st.title("NYC taxi price calculator :taxi: ")
+st.image("taxi_logo.png", width=120)
 
 
 col1, col2, col3 = st.columns(3)
@@ -24,7 +24,7 @@ dt_string = f"{my_date} {my_time}"
 if "predicted_price" not in st.session_state:
     st.session_state.predicted_price = 0.0
 
-prediction_button = st.button("Get prediction")
+prediction_button = st.button("Calculate")
 if prediction_button:
     api_endpoint = "http://localhost:8080/predict_price"
     st.session_state.predicted_price = requests.get(
@@ -42,7 +42,7 @@ if "fig_forecast" not in st.session_state:
 forecast_range = st.number_input("input forecast range here")
 st.empty()
 st.empty()
-forecast_button = st.button(f"Get forecast for {forecast_range} hours")
+forecast_button = st.button(f"Get price forecast for {forecast_range} hours")
 
 
 if forecast_button:
