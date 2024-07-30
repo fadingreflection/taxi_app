@@ -38,7 +38,6 @@ class Predictor:
         warnings.filterwarnings("ignore")
         from statsmodels.tsa.arima.model import ARIMA
 
-        import plotly.express as px
         import plotly.graph_objects as go
 
         input_date = self.input_date
@@ -81,7 +80,7 @@ class Predictor:
                 y=history[history.index <= input_date]["mean_bill"],
                 name="Actual price",
                 line=dict(
-                    color="blue",
+                    color="green",
                     width=2,
                 ),
             )
@@ -93,7 +92,7 @@ class Predictor:
                 y=history[history.index >= input_date]["mean_bill"],
                 name="Forecast price",
                 line=dict(
-                    color="red",
+                    color="orange",
                     width=2,
                     dash="dash",
                 ),
@@ -110,7 +109,7 @@ class Predictor:
     def predict_job(self, job_type: str, forecast_range: float | None = None):
         if job_type == "predict":
             df = self.prepare_dataset()
-            result = self.predict(df)
+            result = format(self.predict(df), ".2f")
             return result[0]
         elif job_type == "forecast":
             result = self.arima_pipeline(forecast_range)

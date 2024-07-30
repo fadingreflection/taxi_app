@@ -22,7 +22,7 @@ def predict_price(input_date, input_dist):
     result = predictor_instance.predict_job(
         job_type=predictor_instance.job_type, forecast_range=None
     )
-    return f"The price of your taxi drive is {result}"
+    return f"The price of your taxi drive is {result} $"
 
 
 @app.get("/get_forecast")

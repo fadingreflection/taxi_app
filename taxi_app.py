@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import requests
 import plotly.io
 
-st.title("Taxi price prediction in NYC")
+st.title("Taxi price prediction in NYC :taxi: ")
 st.image("taxi_image.png")
 
 
@@ -39,11 +39,10 @@ if "fig_forecast" not in st.session_state:
     st.session_state.fig_forecast = go.Figure()
     st.session_state.forecast_range = 0.0
 
-col11, col22, col33 = st.columns(3)
-with col11:
-    forecast_range = st.number_input("input forecast range here")
-with col22:
-    forecast_button = st.button(f"Get forecast for {forecast_range} hours")
+forecast_range = st.number_input("input forecast range here")
+st.empty()
+st.empty()
+forecast_button = st.button(f"Get forecast for {forecast_range} hours")
 
 
 if forecast_button:
