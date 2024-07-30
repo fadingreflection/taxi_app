@@ -1,8 +1,6 @@
 fastapi
 plotly
 uvicorn
-pickle
-json
 datetime
 streamlit
 requests
