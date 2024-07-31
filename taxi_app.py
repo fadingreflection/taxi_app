@@ -60,3 +60,8 @@ if forecast_button:
     st.session_state.fig_forecast = fig
 
 st.plotly_chart(st.session_state.fig_forecast)
+
+if __name__ == "__main__":
+    from myapp import app
+    import uvicorn
+    uvicorn.run(app, port=8080, host="0.0.0.0")
