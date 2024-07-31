@@ -17,6 +17,4 @@ EXPOSE 8000
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
-# ENTRYPOINT ["uvicorn", "run"]
-
-CMD ["python", "./myapp.py"]
+CMD ["python", "myapp.py"]
