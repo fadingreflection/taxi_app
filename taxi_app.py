@@ -2,9 +2,6 @@ import streamlit as st
 import plotly.graph_objects as go
 import requests
 import plotly.io
-from myapp import app
-import uvicorn
-uvicorn.run(app, port=8080, host="0.0.0.0")
 
 st.title("NYC taxi price calculator :taxi: ")
 st.image("taxi_logo.png", width=120)
