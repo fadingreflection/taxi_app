@@ -1,1 +1,1 @@
-Fraduation BMSTU project
+Graduation BMSTU project
