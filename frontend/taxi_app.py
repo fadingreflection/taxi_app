@@ -6,7 +6,6 @@ import plotly.io
 st.title("NYC taxi price calculator :taxi: ")
 st.image("taxi_logo.png", width=120)
 
-
 col1, col2, col3 = st.columns(3)
 with col1:
     my_date = st.date_input("Input date here")
@@ -26,7 +25,7 @@ if "predicted_price" not in st.session_state:
 
 prediction_button = st.button("Calculate")
 if prediction_button:
-    api_endpoint = "http://localhost:8080/predict_price"
+    api_endpoint = st.secrets["PREDICT_ENDPOINT"]
     st.session_state.predicted_price = requests.get(
         url=api_endpoint, params={"input_date": dt_string, "input_dist": my_dist}
     ).text
@@ -47,7 +46,7 @@ forecast_button = st.button(f"Get price forecast for {forecast_range} hours")
 
 if forecast_button:
     st.session_state.forecast_range = forecast_range
-    api_endpoint = "http://localhost:8080/get_forecast"
+    api_endpoint = st.secrets["FORECAST_ENDPOINT"]
     json_string = requests.get(
         url=api_endpoint,
         params={

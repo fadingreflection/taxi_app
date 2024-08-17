@@ -1,5 +1,7 @@
 import pandas as pd
-
+import sys
+import os
+sys.path.append(os.getcwd())
 
 class Predictor:
     def __init__(
@@ -43,7 +45,7 @@ class Predictor:
         input_date = self.input_date
 
         df = pd.read_csv(
-            "df_ts_rolled_resampled_15min.csv", index_col="tpep_pickup_datetime"
+            "backend\\data\\df_ts_rolled_resampled_15min.csv", index_col="tpep_pickup_datetime"
         )[["mean_bill"]]
         df.index = pd.to_datetime(df.index)
         y_test = df[df.index.date >= input_date.date()]
