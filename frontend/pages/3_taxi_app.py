@@ -59,3 +59,6 @@ if forecast_button:
     st.session_state.fig_forecast = fig
 
 st.plotly_chart(st.session_state.fig_forecast)
+
+st.empty()
+logout_button = st.page_link("pages/2_user_private_area.py", label="Back")
