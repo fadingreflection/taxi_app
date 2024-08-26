@@ -1,7 +1,11 @@
-import streamlit as st
+"""Prediction app."""  # noqa: INP001
 import plotly.graph_objects as go
-import requests
 import plotly.io
+import requests
+import streamlit as st
+
+st.session_state.login = st.session_state.get("login")
+my_username = st.session_state["login"]
 
 st.title("NYC taxi price calculator :taxi: ")
 st.image("taxi_logo.png", width=120)
@@ -26,8 +30,8 @@ if "predicted_price" not in st.session_state:
 prediction_button = st.button("Calculate")
 if prediction_button:
     api_endpoint = st.secrets["PREDICT_ENDPOINT"]
-    st.session_state.predicted_price = requests.get(
-        url=api_endpoint, params={"input_date": dt_string, "input_dist": my_dist}
+    st.session_state.predicted_price = requests.get(  # noqa: S113
+        url=api_endpoint, params={"input_date": dt_string, "input_dist": my_dist},
     ).text
 st.write(st.session_state.predicted_price)
 
@@ -47,7 +51,7 @@ forecast_button = st.button(f"Get price forecast for {forecast_range} hours")
 if forecast_button:
     st.session_state.forecast_range = forecast_range
     api_endpoint = st.secrets["FORECAST_ENDPOINT"]
-    json_string = requests.get(
+    json_string = requests.get(  # noqa: S113
         url=api_endpoint,
         params={
             "input_date": dt_string,

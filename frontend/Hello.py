@@ -10,11 +10,11 @@ sys.path.append(
     "C:\\Users\\Anastasiya Fedotova\\Desktop\\DS&ML\\github\taxi_app\\taxi_app",
 )
 
-
-def create_user(username: str, email: str, password: str) -> None:
+#callbacks
+def create_user(username, email, password) -> None:  # noqa: ANN001
     """Create new user."""
     api_endpoint = os.getenv("CREATE_USER_ENDPOINT")
-    response = requests.post(  # noqa: S113
+    requests.post(  # noqa: B018, S113
         url=api_endpoint,
         data=json.dumps(
             {
@@ -24,8 +24,6 @@ def create_user(username: str, email: str, password: str) -> None:
             },
         ),
     ).text
-    st.write(response)
-
 
 st.title("WELCOME to NEW YORK TAXI APP")
 
@@ -54,16 +52,17 @@ if login_button:
     else:
         st.write("Incorrect login or password")
 
-with st.form("Register form"):
-    st.session_state["username"] = st.text_input("username")
-    st.session_state["email"] = st.text_input("email")
-    password = st.text_input("password")
-    submit = st.form_submit_button(
-        "Register",
-        on_click=create_user(
-            st.session_state["username"], st.session_state["email"], password,
-        ),
-    )
+st.header("Register here")
+with st.form("register_form"):
+        username = st.text_input("username")
+        email = st.text_input("email")
+        password = st.text_input("password")
+        submit = st.form_submit_button(
+            "Register")
 
+create_user(username,
+            email,
+            password,
+            )
 
 st.empty()
