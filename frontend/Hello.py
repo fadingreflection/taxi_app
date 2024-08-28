@@ -1,6 +1,5 @@
 """Frontend entrypoint."""  # noqa: N999
 import json
-import os
 import sys
 
 import requests
@@ -13,7 +12,7 @@ sys.path.append(
 #callbacks
 def create_user(username, email, password) -> None:  # noqa: ANN001
     """Create new user."""
-    api_endpoint = os.getenv("CREATE_USER_ENDPOINT")
+    api_endpoint = st.secrets["CREATE_USER_ENDPOINT"]
     requests.post(  # noqa: B018, S113
         url=api_endpoint,
         data=json.dumps(
