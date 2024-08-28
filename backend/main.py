@@ -1,7 +1,8 @@
 """Entrypoint configs."""
+from fastapi import FastAPI
+
 from db_management.db.database import Base, engine
 from db_management.db_endpoints import trips, users
-from fastapi import FastAPI
 from predictor import predictor_endpoints
 
 app = FastAPI()
@@ -28,4 +29,4 @@ def read_root() -> str:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="127.0.0.1", port=8080)
+    uvicorn.run(app, port=8080)

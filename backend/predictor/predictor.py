@@ -45,7 +45,7 @@ class Predictor:
         input_date = self.input_date
 
         df = pd.read_csv(
-            "backend\\data\\df_ts_rolled_resampled_15min.csv", index_col="tpep_pickup_datetime"
+            "df_ts_rolled_resampled_15min.csv", index_col="tpep_pickup_datetime",
         )[["mean_bill"]]
         df.index = pd.to_datetime(df.index)
         y_test = df[df.index.date >= input_date.date()]

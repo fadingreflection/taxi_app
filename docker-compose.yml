@@ -4,10 +4,12 @@ services:
     build: frontend
     ports:
       - 8501:8501
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - backend
-    volumes:
-      - ./frontend:/app
+    # volumes:
+    #   - ./frontend:/app
     restart: always
     networks:
       - app
@@ -17,12 +19,26 @@ services:
     build: backend
     ports:
       - 8080:8080
-    volumes:
-      - ./backend:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+    # volumes:
+    #   - ./backend:/app
     restart: always
     networks:
       - app
     container_name: backend
+
+  db:
+    image: postgres:16
+    container_name: db_app
+    env_file:
+      - docker.env
+    expose:
+      - 5432
+    networks:
+      - app
 
 networks:
   app:
